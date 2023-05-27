@@ -1,5 +1,6 @@
 <?php
 
+use App\Charts\StockByCategoryChart;
 use App\Charts\ThisWeekPurchaseChart;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Demo\DemoController;
@@ -187,9 +188,9 @@ Route::controller(DefaultController::class)->group(function () {
 
 
 
-Route::get('/dashboard', function (ThisWeekPurchaseChart $chart) {
+Route::get('/dashboard', function (ThisWeekPurchaseChart $chart, StockByCategoryChart $stockChart) {
 
-    return view('admin.index', ['chart' => $chart->build()]);
+    return view('admin.index', ['chart' => $chart->build(), 'stockChart' => $stockChart->build()]);
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

@@ -258,10 +258,10 @@
             </div>
             <div class="card">
                 <div class="card-header text-center bg-primary text-white">
-                    Latest Transactions
+                    Stock Report
                 </div>
                     <div class="card-body">
-                        bar chart
+                        {!! $stockChart->container() !!}
                       </div>
             </div>
     </div>
@@ -276,6 +276,7 @@
 
 @section('js')
 <script src="{{ $chart->cdn() }}"></script>
-
 {{ $chart->script() }}
+<script src="{{ $stockChart->cdn() }}"></script>
+{{ $stockChart->script() }}
 @endsection

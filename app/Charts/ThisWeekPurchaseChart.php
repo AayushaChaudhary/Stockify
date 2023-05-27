@@ -17,13 +17,12 @@ class ThisWeekPurchaseChart
 
     public function build(): \ArielMejiaDev\LarapexCharts\BarChart
     {
-        // get purchase amount of last 7 days
         $purchase = Purchase::where('status', 1)->whereBetween('created_at', [Carbon::now()->subDays(7), Carbon::now()])
             ->orderBy('date')->get();
 
         $purchaseAmount = [];
         $purchaseDate = [];
-        // get the purchase amount for each day of last 7 days even if there is no purchase
+
         for ($i = 0; $i < 7; $i++) {
             $purchaseAmount[$i] = 0;
             $purchaseDate[$i] = Carbon::now()->subDays(6 - $i)->format('l');
