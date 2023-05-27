@@ -19,11 +19,13 @@ class StockByCategoryChart
     {
         $allCategories = Category::with('products')->get();
 
+        $totalProducts = Product::sum('quantity');
         $categoryName = $allCategories->pluck('name')->toArray();
         $productCount = [];
 
         foreach ($allCategories as $category) {
-            $productCount[] = $category->products->sum('quantity');
+            $quantitySum = $category->products->sum('quantity');
+            $productCount[] =  round(($quantitySum / $totalProducts) * 100, 2);
         }
 
         return $this->chart->pieChart()
