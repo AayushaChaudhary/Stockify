@@ -1,5 +1,6 @@
 <?php
 
+use App\Charts\ThisWeekPurchaseChart;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Demo\DemoController;
 use App\Http\Controllers\AdminController;
@@ -183,11 +184,12 @@ Route::controller(DefaultController::class)->group(function () {
 });
 
 
- 
 
 
-Route::get('/dashboard', function () {
-    return view('admin.index');
+
+Route::get('/dashboard', function (ThisWeekPurchaseChart $chart) {
+
+    return view('admin.index', ['chart' => $chart->build()]);
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

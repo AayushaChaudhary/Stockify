@@ -250,10 +250,10 @@
     <div class="card-group col-xl-12 gap-4">
             <div class="card">
                 <div class="card-header text-center bg-primary text-white">
-                    Products Stock
+                    Purchase Report
                 </div>
                     <div class="card-body">
-                        bar chart
+                        {!! $chart->container() !!}
                       </div>
             </div>
             <div class="card">
@@ -275,4 +275,7 @@
 @endsection
 
 @section('js')
+<script src="{{ $chart->cdn() }}"></script>
+
+{{ $chart->script() }}
 @endsection
