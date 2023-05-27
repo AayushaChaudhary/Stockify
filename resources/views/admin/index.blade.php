@@ -249,15 +249,15 @@
   <div class="row row-cols-md-2">
     <div class="card-group col-xl-12 gap-4">
             <div class="card">
-                <div class="card-header text-center bg-primary ">
-                    Latest Transactions
+                <div class="card-header text-center bg-primary text-white">
+                    Products Stock
                 </div>
                     <div class="card-body">
                         bar chart
                       </div>
             </div>
             <div class="card">
-                <div class="card-header text-center bg-primary ">
+                <div class="card-header text-center bg-primary text-white">
                     Latest Transactions
                 </div>
                     <div class="card-body">
@@ -274,56 +274,5 @@
 
 @endsection
 
-{{-- @section('js')
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script>
-    
-var incomeexp = <?= json_encode(final)?>;
-Highcharts.chart('container', {
-                    title: {
-                        text: 'Income and Expenditure, Last 7 Days',
-                    },
-                    xAxis: {
-                        categories: incomeexp.days
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Income and expenditure'
-                        }
-                    },
-                    legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'middle'
-                    },
-                    plotOptions: {
-                        series: {
-                            allowPointSelect: true
-                        }
-                    },
-                    series: [{
-                            name: 'Income',
-                            data: incomeexp.incomes
-                        },
-                        {
-                            name: 'Expenditure',
-                            data: incomeexp.expenditures
-                        }
-                    ],
-                    responsive: {
-                        rules: [{
-                            condition: {
-                                maxWidth: 500
-                            },
-                            chartOptions: {
-                                legend: {
-                                    layout: 'horizontal',
-                                    align: 'center',
-                                    verticalAlign: 'bottom'
-                                }
-                            }
-                        }]
-                    }
-                });
-
-</script> --}}
+@section('js')
+@endsection
