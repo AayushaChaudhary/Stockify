@@ -32,7 +32,7 @@
             <div class="invoice-title">
                 <h4 class="float-end font-size-16"><strong>Invoice No # {{ $invoice->invoice_no }}</strong></h4>
                 <h3>
-                 Easy Shopping Mall
+                    <b>STOCKIFY</b>
                 </h3>
             </div>
             <hr>
@@ -40,7 +40,7 @@
             <div class="row">
                 <div class="col-6 mt-4">
                     <address>
-                        <strong>Easy Shopping Mall:</strong><br>
+                        <strong> Stockify:</strong><br>
                         kitty<br>
                         aa@aa.com
                     </address>

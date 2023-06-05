@@ -20,7 +20,7 @@
 
     </head>
 
-    <body class="auth-body-bg">
+    <body class="">
         <div class="bg-overlay"></div>
         <div class="wrapper-page">
             <div class="container-fluid p-0">
@@ -63,7 +63,7 @@
 
     <div class="form-group mb-3 row">
         <div class="col-12">
-            <input class="form-control" id="password" type="password" name="password" required="" placeholder="Password">
+            <input class="form-control" id="password" type="password" name="password" required="" placeholder="Password" minlength="8">
         </div>
     </div>
 
