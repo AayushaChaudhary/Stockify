@@ -14,6 +14,11 @@ use App\Http\Controllers\Pos\PurchaseController;
 use App\Http\Controllers\Pos\DefaultController;
 use App\Http\Controllers\Pos\InvoiceController;
 use App\Http\Controllers\Pos\StockController;
+use App\Models\Category;
+use App\Models\Customer;
+use App\Models\Product;
+use App\Models\Supplier;
+use App\Models\User;
 
 Route::get('/', function () {
     return view('welcome');
@@ -190,7 +195,12 @@ Route::controller(DefaultController::class)->group(function () {
 
 Route::get('/dashboard', function (ThisWeekPurchaseChart $chart, StockByCategoryChart $stockChart) {
 
-    return view('admin.index', ['chart' => $chart->build(), 'stockChart' => $stockChart->build()]);
+    $counts = [];
+    $counts['customers'] = Customer::count();
+    $counts['suppliers'] = Supplier::count();
+    $counts['products'] = Product::count();
+    $counts['categories'] = Category::count();
+    return view('admin.index', ['chart' => $chart->build(), 'stockChart' => $stockChart->build(), 'counts' => $counts]);
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
