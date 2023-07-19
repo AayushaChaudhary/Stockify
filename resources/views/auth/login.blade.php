@@ -32,7 +32,7 @@
                         <div class="text-center mt-4">
                             <div class="mb-3">
                                 <a href="index.html" class="auth-logo">
-                                    <img src="{{ asset('logo/logoo.png') }}" height="150" class="logo-dark mx-auto" alt="">
+                                    <img src="{{ asset('logo/stockify-d1.svg') }}" height="150" class="logo-dark mx-auto" alt="">
                                     
                                 </a>
                             </div>

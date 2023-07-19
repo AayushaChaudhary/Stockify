@@ -5,10 +5,10 @@
                         <div class="navbar-brand-box">
                             <a href="index.html" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="{{ asset('logo/logoo.png') }}" alt="logo-sm" height="110">
+                                    <img src="{{ asset('logo/stockify-d1.svg') }}" alt="logo-sm" height="34">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{ asset('logo/logoo.png') }}" alt="logo-dark" height="110">
+                                    <img src="{{ asset('logo/stockify-d1.svg') }}" alt="logo-dark" height="34">
                                 </span>
                             </a>
 
@@ -20,12 +20,12 @@
     </button>
 
     <!-- App Search-->
-    <form class="app-search d-none d-lg-block">
+    {{-- <form class="app-search d-none d-lg-block">
         <div class="position-relative">
             <input type="text" class="form-control" placeholder="Search...">
             <span class="ri-search-line"></span>
         </div>
-    </form>
+    </form> --}}
 
     
 </div>
@@ -57,7 +57,7 @@
             <!-- item-->
             <a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="ri-user-line align-middle me-1"></i> Profile</a>
             <a class="dropdown-item" href="{{ route('change.password') }}"><i class="ri-wallet-2-line align-middle me-1"></i> Change Password</a>
-            <a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end mt-1">11</span><i class="ri-settings-2-line align-middle me-1"></i> Settings</a>
+            {{-- <a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end mt-1">11</span><i class="ri-settings-2-line align-middle me-1"></i> Settings</a> --}}
             <a class="dropdown-item" href="#"><i class="ri-lock-unlock-line align-middle me-1"></i> Lock screen</a>
             <div class="dropdown-divider"></div>
 
