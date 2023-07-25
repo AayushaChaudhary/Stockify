@@ -24,11 +24,10 @@ class InvoiceController extends Controller
     public function InvoiceAll(){
         $allData = Invoice::orderBy('date','desc')->orderBy('id','desc')->where('status','1')->get();
             return view('backend.invoice.invoice_all',compact('allData'));
-
     } // End Method
 
 
-    public function invoiceAdd(){ 
+    public function invoiceAdd(){
 
 
         $category = Category::all();
@@ -52,7 +51,7 @@ class InvoiceController extends Controller
     if ($request->category_id == null) {
 
        $notification = array(
-        'message' => 'Sorry You do not select any item', 
+        'message' => 'Sorry You do not select any item',
         'alert-type' => 'error'
     );
     return redirect()->back()->with($notification);
@@ -61,7 +60,7 @@ class InvoiceController extends Controller
         if ($request->paid_amount > $request->estimated_amount) {
 
            $notification = array(
-        'message' => 'Sorry Paid Amount is Maximum the total price', 
+        'message' => 'Sorry Paid Amount is Maximum the total price',
         'alert-type' => 'error'
     );
     return redirect()->back()->with($notification);
@@ -73,12 +72,12 @@ class InvoiceController extends Controller
     $invoice->date = date('Y-m-d',strtotime($request->date));
     $invoice->description = $request->description;
     $invoice->status = '0';
-    $invoice->created_by = Auth::user()->id; 
+    $invoice->created_by = Auth::user()->id;
 
     DB::transaction(function() use($request,$invoice){
         if ($invoice->save()) {
            $count_category = count($request->category_id);
-           for ($i=0; $i < $count_category ; $i++) { 
+           for ($i=0; $i < $count_category ; $i++) {
 
               $invoice_details = new InvoiceDetail();
               $invoice_details->date = date('Y-m-d',strtotime($request->date));
@@ -88,8 +87,8 @@ class InvoiceController extends Controller
               $invoice_details->selling_qty = $request->selling_qty[$i];
               $invoice_details->unit_price = $request->unit_price[$i];
               $invoice_details->selling_price = $request->selling_price[$i];
-              $invoice_details->status = '0'; 
-              $invoice_details->save(); 
+              $invoice_details->status = '0';
+              $invoice_details->save();
            }
 
             if ($request->customer_id == '0') {
@@ -101,7 +100,7 @@ class InvoiceController extends Controller
                 $customer_id = $customer->id;
             } else{
                 $customer_id = $request->customer_id;
-            } 
+            }
 
             $payment = new Payment();
             $payment_details = new PaymentDetail();
@@ -127,21 +126,21 @@ class InvoiceController extends Controller
             }
             $payment->save();
 
-            $payment_details->invoice_id = $invoice->id; 
+            $payment_details->invoice_id = $invoice->id;
             $payment_details->date = date('Y-m-d',strtotime($request->date));
-            $payment_details->save(); 
-        } 
+            $payment_details->save();
+        }
 
-            }); 
+            });
 
-        } // end else 
+        } // end else
     }
 
      $notification = array(
-        'message' => 'Invoice Data Inserted Successfully', 
+        'message' => 'Invoice Data Inserted Successfully',
         'alert-type' => 'success'
     );
-    return redirect()->route('invoice.pending.list')->with($notification);  
+    return redirect()->route('invoice.pending.list')->with($notification);
     } // End Method
 
 
@@ -156,15 +155,15 @@ class InvoiceController extends Controller
 
         $invoice = Invoice::findOrFail($id);
         $invoice->delete();
-        InvoiceDetail::where('invoice_id',$invoice->id)->delete(); 
-        Payment::where('invoice_id',$invoice->id)->delete(); 
-        PaymentDetail::where('invoice_id',$invoice->id)->delete(); 
+        InvoiceDetail::where('invoice_id',$invoice->id)->delete();
+        Payment::where('invoice_id',$invoice->id)->delete();
+        PaymentDetail::where('invoice_id',$invoice->id)->delete();
 
          $notification = array(
-        'message' => 'Invoice Deleted Successfully', 
+        'message' => 'Invoice Deleted Successfully',
         'alert-type' => 'success'
     );
-    return redirect()->back()->with($notification); 
+    return redirect()->back()->with($notification);
 
     }// End Method
 
@@ -186,13 +185,13 @@ class InvoiceController extends Controller
             if($product->quantity < $request->selling_qty[$key]){
 
         $notification = array(
-        'message' => 'Sorry you approve Maximum Value', 
+        'message' => 'Sorry you approve Maximum Value',
         'alert-type' => 'error'
     );
-    return redirect()->back()->with($notification); 
+    return redirect()->back()->with($notification);
 
             }
-        } // End foreach 
+        } // End foreach
 
         $invoice = Invoice::findOrFail($id);
         $invoice->updated_by = Auth::user()->id;
@@ -214,10 +213,10 @@ class InvoiceController extends Controller
         });
 
     $notification = array(
-        'message' => 'Invoice Approve Successfully', 
+        'message' => 'Invoice Approve Successfully',
         'alert-type' => 'success'
     );
-    return redirect()->route('invoice.pending.list')->with($notification);  
+    return redirect()->route('invoice.pending.list')->with($notification);
 
     } // End Method
 
@@ -255,4 +254,3 @@ class InvoiceController extends Controller
 
 
 }
- 
