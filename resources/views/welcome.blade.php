@@ -412,7 +412,7 @@
     <div class="px-10 py-3 flex justify-between bg-gray-900 ">
         <ul class="flex h-10 items-center ">
             <li class="flex items-center mr-6">
-                <a>
+                <a href="/">
                     <img src="\img\log2.png"
                         class="h-12 w-full rounded-full scale-100 hover:scale-110 ease-in duration-90">
                 </a>
@@ -420,23 +420,27 @@
 
 
         </ul>
-        <div class="flex  items-center">
-            <a href="{{ route('login') }}" class="text-sm text-gray-300 hover:text-blue-400 ">Log in</a>
+        <div class="flex  items-center gap-2">
+            <button class="bg-slate-700 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-xl">
+                <a href="{{ route('login') }}" class="text-sm text-gray-200 ">Log in</a>
+            </button>
 
-            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-300 hover:text-blue-400 ">Register</a>
+            <button class="bg-slate-700 hover:bg-green-700 text-white font-bold py-1 px-3 rounded-xl">
+            <a href="{{ route('register') }}" class="text-sm text-gray-100">Register</a>
+            </button>
         </div>
     </div>
 
     <div>
         <div class="bg-black relative text-white bg-cover h-full flex justify-center items-center text-center">
             <div class="max-w-7xl mx-auto py-[240px] flex flex-col gap-4 z-10 w-[60%]">
-                <div data-aos="zoom-in-up" class="font-bold text-4xl capitalize text-orange-400">
+                <div data-aos="zoom-in-up" class="font-bold text-4xl capitalize text-orange-500">
                     An international brand that focuses on making the best
                     tools affordable.
                 </div>
 
             </div>
-            <img src="https://cdn.blanxer.com/hero_image/63faec89fb0ba7c738538c2c/648160b951c1df3943273a19.png"
+            <img src="/img/2.jpg"
                 alt="" class="absolute w-full h-full object-cover opacity-40 " />
         </div>
     </div>
@@ -529,7 +533,7 @@
 
 
     {{-- line three --}}
-    <div class="bg-black">
+    {{-- <div class="bg-black">
         <div class="flex justify-center mx-10 gap-[280px]">
             <div data-aos="zoom-in-left" class="card flex items-center">
                 <div class="mt-4">
@@ -596,7 +600,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
 

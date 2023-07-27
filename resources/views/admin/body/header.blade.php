@@ -3,7 +3,7 @@
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
-                            <a href="index.html" class="logo logo-light">
+                            <a href="/dashboard" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="{{ asset('logo/stockify-d1.svg') }}" alt="logo-sm" height="34">
                                 </span>
@@ -12,7 +12,7 @@
                                 </span>
                             </a>
 
-                           
+
                         </div>
 
     <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
@@ -27,7 +27,7 @@
         </div>
     </form> --}}
 
-    
+
 </div>
 
 <div class="d-flex">
@@ -48,8 +48,8 @@
     <div class="dropdown d-inline-block user-dropdown">
         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img class="rounded-circle header-profile-user" src="{{ (!empty($adminData->profile_image))? url('upload/admin_images/'.$adminData->profile_image):url('upload/no_image.jpg') }}"
-                alt="Header Avatar">
+            {{-- <img class="rounded-circle header-profile-user" src="{{ (!empty($adminData->profile_image))? url('upload/admin_images/'.$adminData->profile_image):url('upload/no_image.jpg') }}"
+                alt="Header Avatar"> --}}
             <span class="d-none d-xl-inline-block ms-1">{{ $adminData->name }}</span>
             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
         </button>
@@ -65,8 +65,8 @@
         </div>
     </div>
 
-                        
-            
+
+
                     </div>
                 </div>
             </header>
