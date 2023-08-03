@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pos;
 
 use App\Http\Controllers\Controller;
+use App\Mail\LowStockMail;
 use Illuminate\Http\Request;
 use App\Models\Purchase;
 use App\Models\Supplier;
@@ -17,7 +18,9 @@ use App\Models\InvoiceDetail;
 use App\Models\Payment;
 use App\Models\PaymentDetail;
 use App\Models\Customer;
+use App\Models\User;
 use DB;
+use Illuminate\Support\Facades\Mail;
 
 class InvoiceController extends Controller
 {
@@ -28,8 +31,6 @@ class InvoiceController extends Controller
 
 
     public function invoiceAdd(){
-
-
         $category = Category::all();
         $costomer = Customer::all();
         $invoice_data = Invoice::orderBy('id','desc')->first();
@@ -207,6 +208,12 @@ class InvoiceController extends Controller
              $product = Product::where('id',$invoice_details->product_id)->first();
              $product->quantity = ((float)$product->quantity) - ((float)$request->selling_qty[$key]);
              $product->save();
+
+             $users = User::all();
+            $product = Product::find($invoice_details->product_id);
+            if($product->quantity <= 5){
+                Mail::to($users)->send(new LowStockMail($product));
+            }
             } // end foreach
 
             $invoice->save();

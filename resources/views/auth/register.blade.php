@@ -2,7 +2,7 @@
 <html lang="en">
 
     <head>
-        
+
         <meta charset="utf-8" />
         <title>Register | Admin </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,7 @@
         <link href="{{ asset('backend/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="{{ asset('backend/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
-
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
     </head>
 
     <body class="">
@@ -26,38 +26,38 @@
             <div class="container-fluid p-0">
                 <div class="card">
                     <div class="card-body">
-    
+
                         <div class="text-center mt-4">
                             <div class="mb-3">
                                 <a href="index.html" class="auth-logo">
                                     <img src="{{ asset('logo/stockify-d1.svg') }}" height="150" class="logo-dark mx-auto" alt="">
-                                    
+
                                 </a>
                             </div>
                         </div>
-    
+
                         <h4 class="text-muted text-center font-size-18"><b>Register</b></h4>
-    
+
                         <div class="p-3">
- 
+
 <form class="form-horizontal mt-3" method="POST" action="{{ route('register') }}">
             @csrf
 
     <div class="form-group mb-3 row">
         <div class="col-12">
-            <input class="form-control" id="name" type="text" name="name" required="" placeholder="Name">
+            <input class="form-control" id="name" type="text" name="name" required="" placeholder="Name" value="{{old('name')}}">
         </div>
     </div>
 
     <div class="form-group mb-3 row">
         <div class="col-12">
-            <input class="form-control" id="username" type="text" name="username" required="" placeholder="UserName">
+            <input class="form-control" id="username" type="text" name="username" required="" placeholder="UserName" value="{{old('username')}}">
         </div>
     </div>
 
      <div class="form-group mb-3 row">
         <div class="col-12">
-            <input class="form-control" id="email" type="email" name="email" required="" placeholder="Email">
+            <input class="form-control" id="email" type="email" name="email" required="" placeholder="Email" value="{{old('email')}}">
         </div>
     </div>
 
@@ -77,7 +77,7 @@
     <div class="form-group mb-3 row">
         <div class="col-12">
             <div class="custom-control custom-checkbox">
-                
+
             </div>
         </div>
     </div>
@@ -104,7 +104,7 @@
             <!-- end container -->
         </div>
         <!-- end -->
-        
+
 
         <!-- JAVASCRIPT -->
         <script src="{{ asset('backend/assets/libs/jquery/jquery.min.js') }}"></script>
@@ -114,6 +114,12 @@
         <script src="{{ asset('backend/assets/libs/node-waves/waves.min.js') }}"></script>
 
         <script src="{{ asset('backend/assets/js/app.js') }}"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script>
+        @if($errors->any())
+            toastr.error("{{ $errors->first() }}");
+        @endif
+        </script>
 
     </body>
 </html>
