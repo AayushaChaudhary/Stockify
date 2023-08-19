@@ -1,5 +1,6 @@
 <?php
 
+use App\Charts\MonthlyProfitChart;
 use App\Charts\StockByCategoryChart;
 use App\Charts\ThisWeekPurchaseChart;
 use Illuminate\Support\Facades\Route;
@@ -196,8 +197,7 @@ Route::controller(DefaultController::class)->group(function () {
 
 
 
-Route::get('/dashboard', function (ThisWeekPurchaseChart $chart, StockByCategoryChart $stockChart) {
-
+Route::get('/dashboard', function (ThisWeekPurchaseChart $chart, StockByCategoryChart $stockChart, MonthlyProfitChart $profitChart) {
     $counts = [];
     $counts['customers'] = Customer::count();
     $counts['suppliers'] = Supplier::count();
@@ -206,7 +206,7 @@ Route::get('/dashboard', function (ThisWeekPurchaseChart $chart, StockByCategory
     $transactions = Purchase::with('supplier', 'product')->where("status", 1)->latest()->limit(10)->get();
     $sales = Invoice::with('invoice_details.product', 'payment')->where('status','1')->latest()->limit(10)->get();
     // return $sales;
-    return view('admin.index', ['chart' => $chart->build(), 'stockChart' => $stockChart->build(), 'counts' => $counts, 'transactions'=>$transactions, 'sales' => $sales]);
+    return view('admin.index', ['chart' => $chart->build(), 'stockChart' => $stockChart->build(), 'profitChart' => $profitChart->build(), 'counts' => $counts, 'transactions' => $transactions, 'sales' => $sales]);
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
